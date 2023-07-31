@@ -1,10 +1,9 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
-
+import Example from '../ReactComponents/Example.tsx'
 ---
-
-
 
 <MainLayout title='Astro' >
   <h1>Hi From home!</h1>
+  <Example client:load />
 </MainLayout>
