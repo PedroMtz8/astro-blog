@@ -7,5 +7,4 @@ import react from "@astrojs/react";
 export default defineConfig({
   integrations: [tailwind(), react()],
   site: 'https://pedromtz8.github.io',
-  base: '/astro-blog'
 });
