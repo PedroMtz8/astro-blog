@@ -1,8 +1,11 @@
 ---
+import MainLayout from '../Layouts/MainLayout.astro';
 const { id } = Astro.params;
 
 ---
 
-<div>
-  <h1>Hello dynamic route {id} </h1>
-</div>
+<MainLayout title={id} >
+  <div>
+    <h1>Hello dynamic route {id} </h1>
+  </div>
+</MainLayout>
