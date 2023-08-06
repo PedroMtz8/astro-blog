@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
+import CustomModal from '../ReactComponents/CustomModal';
 ---
 
 <MainLayout title='About' description='About page' >
@@ -8,6 +9,7 @@ import MainLayout from '../Layouts/MainLayout.astro';
     <a href="/">
       <button class='bg-gray-400 p-2 rounded' >Go to home</button>
     </a>
+    <CustomModal client:load />
   </div>
 
 </MainLayout>

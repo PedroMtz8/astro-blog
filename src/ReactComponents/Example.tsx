@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import { useState } from 'react'
 
 export default function Example(){
@@ -21,6 +22,7 @@ export default function Example(){
         >+
         </button>
       </div>
+      <Text color="red.300" >Something</Text>
     </div>
   )
 }
