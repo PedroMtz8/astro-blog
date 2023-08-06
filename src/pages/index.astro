@@ -1,16 +1,16 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
 import App from '../ReactComponents/App';
-import Example from '../ReactComponents/Example.tsx'
-import { ChakraProvider } from '@chakra-ui/react'
-
 ---
 
 <MainLayout title='Astro' >
-  <div class='w-full h-[100vh] flex flex-col items-center justify-center ' >
-
+  
+  <div class='w-full h-[100vh] flex flex-col items-center justify-center gap-3 ' >
+    
     <h1>Hi From home!</h1>
-    <App client:load />
+    <div class='flex flex-col items-center justify-center' >
+      <App client:load />
+    </div>
     <a href="/about">
       <button  class='bg-gray-400 p-2 rounded'>
         Acerca de

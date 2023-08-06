@@ -4,7 +4,12 @@ export default function MyModal() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <button 
+        className='py-2 px-4 bg-gray-200 rounded hover:bg-gray-300 transition-all duration-250	' 
+        onClick={onOpen}
+      >
+        Open Modal
+      </button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

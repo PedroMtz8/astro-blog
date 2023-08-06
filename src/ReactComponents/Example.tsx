@@ -22,7 +22,9 @@ export default function Example(){
         >+
         </button>
       </div>
-      <Text color="red.300" >Something</Text>
+      <Text className='text-red-600 font-sans' >
+        This text and button below are made with<Text as="span" className='text-[#4FD1C5] font-[700]'> Chakra UI</Text>
+      </Text>
     </div>
   )
 }
