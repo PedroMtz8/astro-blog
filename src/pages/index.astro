@@ -4,7 +4,14 @@ import Example from '../ReactComponents/Example.tsx'
 ---
 
 <MainLayout title='Astro' >
-  <h1>Hi From home!</h1>
-  <Example client:load />
-  <a href="/astro-blog/about">Acerca de</a>
+  <div class='w-full h-[100vh] flex flex-col items-center justify-center ' >
+
+    <h1>Hi From home!</h1>
+    <Example client:load />
+    <a href="/about">
+      <button  class='bg-gray-400 p-2 rounded'>
+        Acerca de
+      </button>
+    </a>
+  </div>
 </MainLayout>

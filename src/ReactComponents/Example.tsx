@@ -3,7 +3,7 @@ import { useState } from 'react'
 export default function Example(){
   const [counter, setCounter] = useState(0)
   return (
-    <div className="w-full flex flex-col gap-3 min-h-[300px] justify-center items-center text-xl " >
+    <div className="w-full flex flex-col gap-3 min-h-[130px] justify-center items-center text-xl " >
       <h3>React component</h3> 
       <div className='flex gap-3 items-center ' >
         <button 
