@@ -1,16 +1,13 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
 import Example from '../ReactComponents/Example.tsx'
-import ChakraProvider from '../Providers/ChakraProvider.tsx'
 ---
 
 <MainLayout title='Astro' >
   <div class='w-full h-[100vh] flex flex-col items-center justify-center ' >
 
     <h1>Hi From home!</h1>
-    <ChakraProvider>
       <Example client:load />
-    </ChakraProvider>
     <a href="/about">
       <button  class='bg-gray-400 p-2 rounded'>
         Acerca de

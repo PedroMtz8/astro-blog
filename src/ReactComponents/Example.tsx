@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Text } from '@chakra-ui/react'
 
 export default function Example(){
   const [counter, setCounter] = useState(0)
@@ -22,7 +21,6 @@ export default function Example(){
         >+
         </button>
       </div>
-      <Text className=' text-[#6100FF] '>This text is with Chakra UI <Text as="span" color="teal" >Awesome!</Text> </Text>
     </div>
   )
 }
