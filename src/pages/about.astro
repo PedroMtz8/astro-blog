@@ -1,23 +1,22 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
 import CustomModal from '../ReactComponents/CustomModal';
-import TypedText from '../ReactComponents/Typed';
+import TypeAnimationText from '../ReactComponents/Typping';
 
 const text = 'Hi from about'
 ---
 
 <MainLayout title='About' description='About page' >
   <div class='w-full h-[100vh] flex flex-col justify-center items-center gap-3 ' >
-    <h1>
-      <TypedText {text} client:load />
-    </h1>
-    <a href="/">
+
+    <div class='flex'>
+      <h1 class='invisible'>|</h1><TypeAnimationText {text} client:load >
+    </div>
+      <a href="/">
       <button class='bg-gray-400 p-2 rounded' >Go to home</button>
     </a>
     <div>
       <CustomModal client:load />
-      <!-- <TypedText {text} clien /> -->
-
     </div>
   </div>
 
