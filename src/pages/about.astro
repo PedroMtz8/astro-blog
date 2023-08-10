@@ -1,6 +1,7 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
 import CustomModal from '../ReactComponents/CustomModal';
+import DragAndDrop from '../ReactComponents/DragAndDrop';
 import TypeAnimationText from '../ReactComponents/Typping';
 
 const text = 'Hi from about'
@@ -17,6 +18,7 @@ const text = 'Hi from about'
     </a>
     <div>
       <CustomModal client:load />
+      <DragAndDrop client:load />
     </div>
   </div>
 
