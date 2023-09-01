@@ -23,12 +23,14 @@ const DragAndDrop = () => {
 
     // Acciones a realizar con los archivos soltados
     const files = e.dataTransfer.files;
-
+    // console.log(files[0].name)
     if(files[0]) {
       let filesArray: string[] = []
-      for(let key of files) {
-        filesArray.push(key.name);
+
+      for (let i = 0; i < files.length; i++) {
+        filesArray.push(files[i].name);
       }
+    
       setNameFiles(filesArray)
       console.log(filesArray)
     }
@@ -68,9 +70,9 @@ const DragAndDrop = () => {
             onChange={(e) => {
               const files = e.target.files
               let filesArray: string[] = []
-              for(let key of files) {
-                filesArray.push(key.name);
-              }
+              for (let i = 0; i < files.length; i++) {
+                filesArray.push(files[i].name);
+              }            
               setNameFiles(filesArray);
               // console.log(e.target.files)
             }}

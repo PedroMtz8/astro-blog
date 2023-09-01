@@ -5,10 +5,10 @@ import App from '../ReactComponents/App';
 
 <MainLayout title='Astro' >
   
-  <div class='w-full h-[100vh] flex flex-col items-center justify-center gap-3 ' >
+  <div class='w-full h-full min-h-[100vh] flex flex-col items-center justify-center gap-3 ' >
     
     <h1>Hi From home!</h1>
-    <div class='flex flex-col items-center justify-center' >
+    <div class='flex flex-col items-center justify-center'transition:persist >
       <App client:load />
     </div>
     <a href="/about">
@@ -16,5 +16,8 @@ import App from '../ReactComponents/App';
         Acerca de
       </button>
     </a>
-  </div>
-</MainLayout>
+    <a href="/random-page">  
+      <img class='rounded-[10px] w-[50%] h-full' src="https://us.123rf.com/450wm/shushanto/shushanto2209/shushanto220900703/191842443-imagen-de-fondo-de-la-ilustraci%C3%B3n-del-arte-conceptual-de-la-destrucci%C3%B3n-de-los-planetas.jpg" alt="imagen" transition:name='imagen' >
+    </a>
+    </div>
+  </MainLayout>
