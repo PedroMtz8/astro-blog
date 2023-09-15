@@ -4,14 +4,15 @@ import MainHead from './MainHead.astro';
 interface Props {
 	title: string;
 	description?: string;
+	ogImage?: string;
 }
 
-const { title, description }: Props = Astro.props;
+const { title, description, ogImage }: Props = Astro.props;
 
 ---
 
 <html lang="en">
-	<MainHead {title} {description} />
+	<MainHead {title} {description} ogImage={ogImage} />
 	<body>
 			<slot>Default text</slot>
 	</body>
