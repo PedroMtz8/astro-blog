@@ -22,6 +22,7 @@
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "astro": "^4.1.1",
+    "auth-astro": "^4.1.0",
     "firebase": "^10.1.0",
     "firebase-admin": "^11.10.1",
     "framer-motion": "^10.15.0",
