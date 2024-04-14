@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 
 export default function App(){
   const [mounted, setMounted] = useState(false);
-  console.log('mounted', mounted);
   useEffect(() => {
     setMounted(true);
   }, [])

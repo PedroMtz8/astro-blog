@@ -1,6 +1,11 @@
 ---
 import MainLayout from '../Layouts/MainLayout.astro';
 import App from '../ReactComponents/App';
+
+const query = Astro.url.searchParams.get('query');
+
+console.log('query', query);
+
 ---
 
 <MainLayout title='Astro' >
