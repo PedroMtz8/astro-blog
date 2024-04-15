@@ -1,5 +1,6 @@
 // import Twitch from "@auth/core/providers/twitch"
 import { defineConfig } from "auth-astro"
+import Google from "@auth/core/providers/google"
 
 export default defineConfig({
 	providers: [
@@ -8,6 +9,7 @@ export default defineConfig({
       clientSecret: import.meta.env.GOOGLE_SECRET
     })
 	],
+
 	// callbacks: {
 	// 	session: ({ session, token }) => ({
 	// 		...session,
