@@ -1,0 +1,50 @@
+---
+import MainLayout from '../Layouts/MainLayout.astro';
+import { getSession } from 'auth-astro/server';
+
+const session = await getSession(Astro.request);
+---
+
+<MainLayout title="User">
+  <div class='flex flex-col gap-3 p-4'>
+
+    {
+      session ? (
+        <div class='flex gap-2 items-center'>
+          <img src={session.user?.image} alt={session.user.name + '-profile'} width='32px' height='32px' class='rounded' />
+          <p>Bienvenido {session.user?.name}</p>
+        </div>
+      ) : (
+        <p>No ha iniciado sesión</p>
+        <div class='flex gap-2'>
+          <p>Inicia sesión aqui: </p>
+          <a href="/login" class='text-blue-500'>Iniciar sesión</a>
+        </div>
+      )
+    }
+
+    {
+      session && (
+      <div class='w-[max-content]'>
+        <button id="signOut" type="button" >Cerrar sesión</button>
+      </div>
+      )
+    }
+  
+</div>
+
+</MainLayout>
+
+<script>
+import { $ } from '../lib/dom-selector';
+
+      const { signOut } = await import("auth-astro/client");
+
+      const $signOut = $('#signOut');
+
+      $signOut.onclick = async () => {
+        signOut();
+        // location.reload();
+      };
+
+</script>
