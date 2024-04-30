@@ -1,0 +1,117 @@
+---
+const blogs = [
+  {
+    id: 1,
+    title: 'Blog 1',
+    description: 'Descripción del blog 1',
+    image: 'https://via.assets.so/game.png?id=1&q=40',
+    link: '/blog/1'
+  },
+  {
+    id: 2,
+    title: 'Blog 2',
+    description: 'Descripción del blog 2',
+    image: 'https://via.assets.so/game.png?id=2&q=40',
+    link: '/blog/2'
+  },
+  {
+    id: 3,
+    title: 'Blog 3',
+    description: 'Descripción del blog 3',
+    image: 'https://via.assets.so/game.png?id=3&q=40',
+    link: '/blog/3'
+  }
+];
+---
+
+
+<div id='blogs'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12'>
+        <h1>Blogs</h1>
+      </div>
+    </div>
+    
+    <!-- MAP BLOGS as react -->
+
+    <div>
+      {blogs.map(blog => (
+        <div id={`blog-item`} data-blog-id={blog.id} class='row'>
+          <div class='col-12'>
+            <h2>{blog.title}</h2>
+          </div>
+          <div class='col-12'>
+            <p>{blog.description}</p>
+          </div>
+          <div class='col-12'>
+            <img src={blog.image} alt={blog.title} />
+          </div>
+          <div class='col-12'>
+            <a href={blog.link}>Leer más</a>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  const listaBlogs = document.querySelectorAll('#blog-item');
+
+  // console.log('listaBlogs', listaBlogs);
+
+
+  const opciones = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 1
+};
+
+// Función para manejar las intersecciones
+function handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
+  entries.forEach(entry => {
+    const target = entry.target as HTMLElement;
+    if (entry.isIntersecting) {
+      console.log('dataset', target.dataset)
+      console.log(`El blog con ID ${target.dataset.blogId} está dentro de la vista`);
+      // Realizar un seguimiento de la intersección inicial
+      trackInteraction(target.dataset.blogId, 'view');
+      // Desconectar el observador después de la intersección inicial
+      observer.unobserve(entry.target);
+    }
+  });
+}
+
+// Función para manejar los clics en los elementos de la lista
+function handleClick(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+  const blogId = target.dataset.blogId;
+  console.log(`Se hizo clic en el blog con ID ${blogId}`);
+  // Realizar un seguimiento del clic
+  trackInteraction(blogId, 'click');
+}
+
+// Función para realizar un seguimiento de las interacciones
+function trackInteraction(blogId: string, interactionType: string) {
+  const interactionData = {
+    timestamp: new Date(),
+    userId: 'id_del_usuario',
+    blogId: blogId,
+    interactionType: interactionType
+  };
+  // Aquí puedes enviar los datos de interacción a tu servidor o sistema de análisis
+  console.log('Datos de interacción:', interactionData);
+}
+
+// Crear una instancia de IntersectionObserver para cada elemento de la lista
+listaBlogs.forEach(blog => {
+  const observer = new IntersectionObserver(handleIntersection, opciones);
+  observer.observe(blog);
+
+  // Escuchar clics en cada elemento de la lista
+  blog.addEventListener('click', handleClick);
+});
+
+</script>
