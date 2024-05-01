@@ -1,10 +1,11 @@
 ---
+import { Button } from '@/components/ui/button';
 import MainLayout from '../Layouts/MainLayout.astro';
-import App from '../ReactComponents/App';
+import Blogs from '@/components/blogs.astro';
+// import App from '../ReactComponents/App';
 
 const query = Astro.url.searchParams.get('query');
 
-console.log('query', query);
 
 ---
 
@@ -14,7 +15,7 @@ console.log('query', query);
     
     <h1>Hi From home!</h1>
     <div class='flex flex-col items-center justify-center' >
-      <App client:only />
+      <!-- <App client:only /> -->
     </div>
     <a href="/about">
       <button  class='bg-gray-400 p-2 rounded'>
@@ -24,5 +25,31 @@ console.log('query', query);
     <a href="/random-page" class='flex justify-center'>  
       <img class='rounded-[10px] w-[50%] h-full' src="https://us.123rf.com/450wm/shushanto/shushanto2209/shushanto220900703/191842443-imagen-de-fondo-de-la-ilustraci%C3%B3n-del-arte-conceptual-de-la-destrucci%C3%B3n-de-los-planetas.jpg" alt="imagen" transition:name='imagen' >
     </a>
+    <Button id='btn'  >
+      Hola
+    </Button>
+
+    <div class='h-screen ' >
+      <p>Texto en div alto</p>
+    </div>
+
+    <div class='mi-elemento h-[300px]' >
+      <p>Los elementos siguientes siendo observado por Intersection Observer (test)</p>
+
+    </div>
+
+    <Blogs />
+
   </div>
 </MainLayout>
+
+<script>
+  function onClick(e: MouseEvent) {
+    console.log('click', e);
+  }
+
+  const btn = document.getElementById('btn');
+
+  btn.onclick = onClick;
+
+</script>
