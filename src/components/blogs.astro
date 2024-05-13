@@ -1,35 +1,16 @@
 ---
-const blogs = [
-  {
-    id: 1,
-    title: 'Blog 1',
-    description: 'Descripción del blog 1',
-    image: 'https://via.assets.so/game.png?id=1&q=40',
-    link: '/blog/1'
-  },
-  {
-    id: 2,
-    title: 'Blog 2',
-    description: 'Descripción del blog 2',
-    image: 'https://via.assets.so/game.png?id=2&q=40',
-    link: '/blog/2'
-  },
-  {
-    id: 3,
-    title: 'Blog 3',
-    description: 'Descripción del blog 3',
-    image: 'https://via.assets.so/game.png?id=3&q=40',
-    link: '/blog/3'
-  }
-];
+import { Button } from './ui/button';
+import { blogs } from '../constants/blogs';
+
 ---
 
 
-<div id='blogs'>
+<div id='blogs' class='pb-[10px]'>
   <div class='container'>
     <div class='row'>
       <div class='col-12'>
         <h1>Blogs</h1>
+        <Button id='test-state' >Test state button</Button>
       </div>
     </div>
     
@@ -58,23 +39,73 @@ const blogs = [
 </div>
 
 <script>
+import { $ } from '@/lib/dom-selector';
+import { thresholdState } from '@/store/pages';
+
   const listaBlogs = document.querySelectorAll('#blog-item');
 
-  // console.log('listaBlogs', listaBlogs);
+  const observerInput = $('#observer-limit');
+
+  observerInput.oninput = function(e: InputEvent) {
+
+    const value = (e.target as HTMLInputElement).value;
+
+    if (value === '') return (e.target as HTMLInputElement).value = '';
+
+    if(Number(value) > 1){
+      (e.target as HTMLInputElement).value = '1';
+    }
+    // console.log('e.target.value', (e.target as HTMLInputElement).value)
+    let threshold = Number((e.target as HTMLInputElement).value);
+    // console.log('threshold', threshold)
+    if (threshold === 0) return;
+    // console.log('pasó')
+    thresholdState.set(threshold)
+  }
+
+  let observer = null;
+
+  thresholdState.subscribe(value => {
+    // console.log('value', value)
+    // return value;
+    // console.log('observer', observer)
+    if (observer) {
+      observer.disconnect();
+      // listaBlogs.forEach(blog => observer.unobserve(blog));
+    }
+    const opciones = {
+      root: null,
+      rootMargin: '0px',
+      threshold: value
+    };
+
+    // console.log('opciones', opciones.threshold)
+
+    listaBlogs.forEach(blog => {
+      observer = new IntersectionObserver(handleIntersection, opciones);
+      observer.observe(blog);
+      // observer.disconnect()
+      // Escuchar clics en cada elemento de la lista
+      blog.addEventListener('click', handleClick);
+    });
+
+  })
 
 
-  const opciones = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 1
-};
+  // console.log('threshold', threshold)
+
+//   const opciones = {
+//   root: null,
+//   rootMargin: '0px',
+//   threshold: 1
+// };
 
 // Función para manejar las intersecciones
 function handleIntersection(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
   entries.forEach(entry => {
     const target = entry.target as HTMLElement;
     if (entry.isIntersecting) {
-      console.log('dataset', target.dataset)
+      // console.log('dataset', target.dataset)
       console.log(`El blog con ID ${target.dataset.blogId} está dentro de la vista`);
       // Realizar un seguimiento de la intersección inicial
       trackInteraction(target.dataset.blogId, 'view');
@@ -102,16 +133,44 @@ function trackInteraction(blogId: string, interactionType: string) {
     interactionType: interactionType
   };
   // Aquí puedes enviar los datos de interacción a tu servidor o sistema de análisis
-  console.log('Datos de interacción:', interactionData);
+  // console.log('Datos de interacción:', interactionData);
 }
 
 // Crear una instancia de IntersectionObserver para cada elemento de la lista
-listaBlogs.forEach(blog => {
-  const observer = new IntersectionObserver(handleIntersection, opciones);
-  observer.observe(blog);
+// listaBlogs.forEach(blog => {
+//   const observer = new IntersectionObserver(handleIntersection, opciones);
+//   observer.observe(blog);
 
-  // Escuchar clics en cada elemento de la lista
-  blog.addEventListener('click', handleClick);
-});
+//   // Escuchar clics en cada elemento de la lista
+//   blog.addEventListener('click', handleClick);
+// });
+
+</script>
+
+<script>
+import { $ } from '@/lib/dom-selector';
+import { isOpen } from '@/store/pages';
+
+// console.log('XDXDXD')
+
+function openDialog() {
+    console.log('openDialog')
+    isOpen.set(!isOpen.get());
+  }
+
+const stateButton = $('#test-state');
+
+stateButton.onclick = openDialog;
+
+// console.log('isOpen', isOpen)
+
+  isOpen.subscribe(open => {
+    // console.log('open', open)
+    // if (open) {
+    //   document.getElementById('dialog').style.display = 'block';
+    // } else {
+    //   document.getElementById('dialog').style.display = 'none';
+    // }
+  }); 
 
 </script>
